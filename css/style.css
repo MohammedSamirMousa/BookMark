@@ -1,0 +1,66 @@
+body {
+  font-family: "PT Sans Caption", sans-serif;
+  background-color: #f7ecde;
+}
+
+ h1 {
+  font-family: "Pacifico", cursive;
+}
+
+.book-mark  h1::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  transform: translateY(50%);
+  background-color: #fec260;
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  -o-transform: translateY(50%);
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+
+div > h1:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(40%);
+  -webkit-transform: translateY(40%);
+  -moz-transform: translateY(40%);
+  -ms-transform: translateY(40%);
+  -o-transform: translateY(40%);
+}
+
+.text-font {
+  font-family: "Righteous", cursive;
+}
+
+h2,
+.text-site {
+  font-weight: 600;
+  background-image: linear-gradient(to right, #3ca55c, #b5ac49);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.group-inps {
+  border: #000 2px dotted;
+  border-left: 0;
+  border-right: 0;
+}
+
+#inputBoxShadow .form-control:focus {
+  box-shadow: 0 0 7px 0px #fd7e14;
+  border-color: #fd7e14;
+}
