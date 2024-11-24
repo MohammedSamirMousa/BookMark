@@ -7,7 +7,7 @@ var arrayOfSites = [];
 // LocalStorage
 if (localStorage.getItem("data")) {
   arrayOfSites = JSON.parse(localStorage.getItem("data"));
-  display()
+  display();
 }
 // LocalStorage
 
@@ -22,6 +22,12 @@ function addData() {
     localStorage.setItem("data", JSON.stringify(arrayOfSites));
     clearData();
     display();
+  }else{
+    Swal.fire({
+      icon: "error",
+      title: "Site Name or Url is not valid, Please follow the rules below :",
+      text: "Site name Or Site URL must be a valid",
+    });
   }
 }
 // addData
@@ -64,15 +70,10 @@ function deleteData(index) {
 function validSiteName() {
   var regex = /^([A-Z]|[a-z]){3,}/;
   if (regex.test(siteName.value) == true) {
-    document
-    .getElementById("validError")
-    .classList.replace("d-block", "d-none");
-
+    document.getElementById("validError").classList.replace("d-block" , "d-none")
     return true;
   } else {
-    document
-    .getElementById("validError")
-    .classList.replace("d-none", "d-block");
+    document.getElementById("validError").classList.replace("d-none" , "d-block")
     return false;
   }
 }
@@ -83,14 +84,11 @@ function validSiteUrl() {
   var regex =
     /^(https?:\/\/)?([a-zA-Z0-9.-]+)(\.[a-zA-Z]{2,})(:[0-9]{1,5})?(\/[^\s]*)?$/;
   if (regex.test(siteUrl.value) == true) {
-    document
-    .getElementById("validErrorUrl")
-    .classList.replace("d-block", "d-none");
+    document.getElementById("validErrorUrl").classList.replace("d-block" , "d-none")
+
     return true;
   } else {
-    document
-    .getElementById("validErrorUrl")
-    .classList.replace("d-none", "d-block");
+    document.getElementById("validErrorUrl").classList.replace("d-none" , "d-block")
     return false;
   }
 }
