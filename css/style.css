@@ -3,11 +3,11 @@ body {
   background-color: #f7ecde;
 }
 
- h1 {
+h1 {
   font-family: "Pacifico", cursive;
 }
 
-.book-mark  h1::before {
+.book-mark h1::before {
   content: "";
   position: absolute;
   top: 20%;
@@ -28,7 +28,7 @@ body {
   -o-transition: all 0.5s;
 }
 
-.book-mark  h1:hover::before {
+.book-mark h1:hover::before {
   content: "";
   position: absolute;
   top: 0;
