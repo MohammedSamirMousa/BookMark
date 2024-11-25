@@ -1,95 +1,108 @@
-// Vars
+// To get the elements from the index
 var siteName = document.getElementById("name");
 var siteUrl = document.getElementById("URL");
-var arrayOfSites = [];
-// Vars
+var closeBtn = document.getElementById("btnClose");
+var boxModal = document.getElementById("box");
 
-// LocalStorage
-if (localStorage.getItem("data")) {
-  arrayOfSites = JSON.parse(localStorage.getItem("data"));
+//To avoid overriding data
+var arrayOfData = [];
+
+function run() {
+  clear();
   display();
 }
-// LocalStorage
-
-// addData
+// To get values from the user
 function addData() {
-  if (validSiteName() == true && validSiteUrl() == true) {
+  // to make validation
+  if (validName() == true && validUrl() == true) {
     var userInput = {
       name: siteName.value,
       url: siteUrl.value,
     };
-    arrayOfSites.push(userInput);
-    localStorage.setItem("data", JSON.stringify(arrayOfSites));
-    clearData();
-    display();
-  }else{
-    Swal.fire({
-      icon: "error",
-      title: "Site Name or Url is not valid, Please follow the rules below :",
-      text: "Site name Or Site URL must be a valid",
-    });
+    // To push the data into the array. If we don't use an array, the new data will override the previous one
+    arrayOfData.push(userInput);
+    // Save the user data in local storage after submission
+    localStorage.setItem("data", JSON.stringify(arrayOfData));
+    run();
+  } else {
+    boxModal.classList.replace("d-none", "d-block");
+    close();
   }
 }
-// addData
 
-// clearData
-function clearData() {
+function clear() {
+  // Clear inputs after submitting data
   siteName.value = "";
   siteUrl.value = "";
 }
-// clearData
 
-// display
 function display() {
-  var dataFromHtml = "";
-  for (i = 0; i < arrayOfSites.length; ++i) {
-    dataFromHtml += `
-    <tr>
-      <td>${i + 1}</td>
-      <td>${arrayOfSites[i].name}</td>
-      <td><a href="https://${
-        arrayOfSites[i].url
-      }" class="btn btn-success text-decoration-none" target="_blank">Visit</a></td>
-      <td><button class="btn btn-danger" onclick="deleteData(${i})">Delete</button></td>
-    </tr>
-    `;
+  // Display data entered by the user
+  var dataFromIndexHtml = "";
+  for (i = 0; i < arrayOfData.length; ++i) {
+    dataFromIndexHtml += `<tr>
+                            <td>${1 + i}</td>
+                            <td>${arrayOfData[i].name}</td>
+                            <td><a href="${arrayOfData[i].url}" target="_blank"
+                                    class="btn btn-success text-decoration-none">Visit</a></td>
+                            <td><button class="btn btn-danger" onclick="deleteData(${i})">Delete</button></td>
+                        </tr>`;
   }
-  document.getElementById("table").innerHTML = dataFromHtml;
+  document.getElementById("table").innerHTML = dataFromIndexHtml;
+  // Display data entered by the user
 }
-// display
 
-// deleteData
+// This function is used to create a delete button
 function deleteData(index) {
-  arrayOfSites.splice(index, 1);
-  localStorage.setItem("data", JSON.stringify(arrayOfSites));
+  arrayOfData.splice(index, 1);
+  display();
+  // Save the updated data in local storage after deletion
+  localStorage.setItem("data", JSON.stringify(arrayOfData));
+}
+
+// To store data persistently in local storage
+if (localStorage.getItem("data")) {
+  arrayOfData = JSON.parse(localStorage.getItem("data"));
   display();
 }
-// deleteData
 
-// Valid Name
-function validSiteName() {
-  var regex = /^([A-Z]|[a-z]){3,}/;
+// This function validates the site name and URL
+function validName() {
+  var regex = /([A0-Z9]|[a0-z9]){3,}/;
   if (regex.test(siteName.value) == true) {
-    document.getElementById("validError").classList.replace("d-block" , "d-none")
+    document
+      .getElementById("validError")
+      .classList.replace("d-block", "d-none");
     return true;
   } else {
-    document.getElementById("validError").classList.replace("d-none" , "d-block")
+    document
+      .getElementById("validError")
+      .classList.replace("d-none", "d-block");
     return false;
   }
 }
-// Valid Name
 
-// Valid URL
-function validSiteUrl() {
+function validUrl() {
   var regex =
-    /^(https?:\/\/)?([a-zA-Z0-9.-]+)(\.[a-zA-Z]{2,})(:[0-9]{1,5})?(\/[^\s]*)?$/;
+    /(http(s)?:\\.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\\=]*)/;
   if (regex.test(siteUrl.value) == true) {
-    document.getElementById("validErrorUrl").classList.replace("d-block" , "d-none")
+    document
+      .getElementById("validErrorUrl")
+      .classList.replace("d-block", "d-none");
 
     return true;
   } else {
-    document.getElementById("validErrorUrl").classList.replace("d-none" , "d-block")
+    document
+      .getElementById("validErrorUrl")
+      .classList.replace("d-none", "d-block");
     return false;
   }
 }
-// Valid URL
+
+// This function creates the close button functionality
+function close() {
+  closeBtn.addEventListener("click", function () {
+    // Close the popup by selecting the box element
+    boxModal.classList.add("d-none");
+  });
+}

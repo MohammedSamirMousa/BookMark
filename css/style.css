@@ -3,6 +3,10 @@ body {
   background-color: #f7ecde;
 }
 
+.text-font {
+  font-family: "Righteous", cursive;
+}
+
 h1 {
   font-family: "Pacifico", cursive;
 }
@@ -42,10 +46,6 @@ h1 {
   -o-transform: translateY(40%);
 }
 
-.text-font {
-  font-family: "Righteous", cursive;
-}
-
 .group-inps h2,
 .text-site {
   font-weight: 600;
@@ -64,3 +64,21 @@ h1 {
   box-shadow: 0 0 7px 0px #fd7e14;
   border-color: #fd7e14;
 }
+
+#box {
+  background-color: #00000034;
+}
+
+#btnClose:focus {
+  border: none;
+}
+
+.card-body header span {
+  width: 20px ; 
+  height: 20px;
+  background-color: #febe2e;
+  display: block;
+}
+
+
+

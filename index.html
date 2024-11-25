@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bookmark</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -12,7 +12,8 @@
 </head>
 
 <body>
-    <div class="book-mark vh-100">
+
+    <div class="book-mark">
         <div class="container">
             <div class="d-flex justify-content-center py-5">
                 <h1 class="position-relative overflow-hidden">Bookmark</h1>
@@ -25,20 +26,19 @@
                 </div>
                 <div id="inputBoxShadow">
                     <label for="name" class="py-2 fw-bold"><i class="fa-solid fa-book-bookmark"></i> Site Name</label>
-                    <input type="text" class="form-control border" name="site_name" id="name"
-                        placeholder="Bookmark Name">
+                    <input type="text" class="form-control" name="site_name" id="name" placeholder="Bookmark Name">
                     <p class="d-none text-danger mt-2 fw-bold" id="validError">You Must Write At Least 3 Charcters</p>
                 </div>
                 <div id="inputBoxShadow">
                     <label for="URL" class="py-2 fw-bold"><i class="fa-solid fa-link"></i> Site URL</label>
-                    <input type="text" class="form-control" name="site_url" id="URL"
-                        placeholder="Bookmark Name">
+                    <input type="text" class="form-control" name="site_url" id="URL" placeholder="Site URL">
                     <p class="d-none text-danger mt-2 fw-bold" id="validErrorUrl">You Must Write A Link Include
-                        ([\w-]+\.)+[\w-]+(\/[\w-]*.com)</p>
+                        (https://****.com/)</p>
 
                 </div>
                 <div class="d-flex justify-content-center py-3">
-                    <button class="btn btn-danger px-5" onclick="addData()" data-bs-toggle="modal" data-bs-target="#exampleModal">Submit</button>
+                    <button class="btn btn-danger px-5" onclick="addData()" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Submit</button>
                 </div>
 
                 <table class="table text-center">
@@ -49,17 +49,40 @@
                         <th>delete</th>
                     </tr>
                     <tbody id="table">
-
+                        
                     </tbody>
                 </table>
             </div>
+            <div id="box"
+                class="box-content vh-100 d-flex justify-content-center align-items-center position-absolute top-0 start-0 end-0 d-none">
+                <div class="container d-flex justify-content-center">
+                    <div class="card bg-body-tertiary shadow w-75">
+                        <div class="card-body p-3">
+                            <header class="d-flex align-items-center justify-content-between py-3 border-bottom border-2 border-black">
+                                <div class="d-flex">
+                                    <span class="rounded-circle me-2 bg-danger"></span>
+                                    <span class="rounded-circle me-2"></span>
+                                    <span class="rounded-circle me-2 bg-success"></span>
+                                </div>
+                                <button class="btn" id="btnClose"><i
+                                        class="fa-solid fa-xmark fa-lg"></i></button>
+                            </header>
+                            <div class="body">
+                                <p class="fs-3 fw-bold py-3 text-muted">Site Name or Url is not valid, Please follow the rules below :
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li class="fw-bold py-2"><i class="fa-regular fa-circle-right p-2 text-danger fa-lg"></i>Site name must
+                                        contain at least 3 characters</li>
+                                    <li class="fw-bold py-2"><i class="fa-regular fa-circle-right p-2 text-danger fa-lg"></i>Site URL must be
+                                        a valid one</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
